@@ -119,6 +119,19 @@ public class ArrayDeque <T>{
         return i;
     }
     public T get(int index){
-        return item[index];
+        if (head < last) {
+            return item[index+head];
+        }
+        else {
+            if (index+head < capacity){
+                return item[index+head];
+            }
+            else {
+                return item[(index+head+capacity)%capacity];
+            }
+        }
+
     }
+
+
 }
