@@ -13,7 +13,7 @@ public class ArrayDeque <T>{
         capacity = (int)(capacity * rate);
         T[] a = (T[]) new Object[capacity ];
         if (last >= head){
-            System.arraycopy(item,0,a,0,capacity);
+            System.arraycopy(item,head,a,0,last-head);
 
         }
         else{
@@ -131,6 +131,29 @@ public class ArrayDeque <T>{
             }
         }
 
+    }
+
+    public static void main(String[] args) {
+        ArrayDeque<Integer> a = new ArrayDeque<>();
+        a.addLast(0);
+        a.addLast(1);
+        a.addFirst(2);
+        a.addFirst(3);
+        a.addFirst(4);
+        a.addFirst(5);
+        a.get(0);
+        a.get(3) ;
+        a.addFirst(8);
+        a.removeLast();
+        a.addFirst(10);
+        a.removeLast();
+        a.removeLast();
+        a.removeLast();
+        a.get(2);
+        a.addFirst(15);
+        a.addLast(16);
+        a.addFirst(17);
+        a.addLast(18);
     }
 
 
