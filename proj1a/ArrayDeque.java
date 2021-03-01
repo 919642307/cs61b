@@ -7,7 +7,7 @@ public class ArrayDeque <T>{
         item = (T[]) new Object[capacity];
         head = last = 0;
     }
-    public void resize(double rate){
+    private void resize(double rate){
         int c;
         c = capacity;
         capacity = (int)(capacity * rate);
@@ -25,7 +25,7 @@ public class ArrayDeque <T>{
 
         item = a;
     }
-    public void reduceSize(double rate){
+    private void reduceSize(double rate){
         int c;
         c = capacity;
         capacity = (int)(capacity * rate);
@@ -45,14 +45,14 @@ public class ArrayDeque <T>{
     public int size(){
         return (last - head + capacity) %capacity;
     }
-    public boolean isFull(){
+    private boolean isFull(){
         return size() == capacity - 1 ;
     }
 
     public boolean isEmpty(){
         return last == head;
     }
-    public boolean isLowUsageRate(){
+    private boolean isLowUsageRate(){
         return capacity > 16 && (size()/(double)capacity)<0.25;
     }
 
@@ -132,29 +132,36 @@ public class ArrayDeque <T>{
         }
 
     }
+    public void printDeque(){
+        if (head == last) {
+            return;
+        }
+        else if (head < last) {
+            int i = head;
+            for (;i<last;i++){
+                if (i == last - 1) {
+                    System.out.print(item[i]);
+                }
+                System.out.printf(item[i] + " ");
+            }
 
-    public static void main(String[] args) {
-        ArrayDeque<Integer> a = new ArrayDeque<>();
-        a.addLast(0);
-        a.addLast(1);
-        a.addFirst(2);
-        a.addFirst(3);
-        a.addFirst(4);
-        a.addFirst(5);
-        a.get(0);
-        a.get(3) ;
-        a.addFirst(8);
-        a.removeLast();
-        a.addFirst(10);
-        a.removeLast();
-        a.removeLast();
-        a.removeLast();
-        a.get(2);
-        a.addFirst(15);
-        a.addLast(16);
-        a.addFirst(17);
-        a.addLast(18);
+        }
+        else {
+            for (int i = head; i < capacity; i++) {
+                System.out.printf(item[i] + " ");
+            }
+
+            for (int i = 0; i < last; i++) {
+                if (i == head - 1) {
+                    System.out.println(item[i]);
+                    break;
+                }
+                System.out.printf(item[i]+" ");
+            }
+        }
     }
+
+
 
 
 }
