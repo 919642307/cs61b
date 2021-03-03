@@ -111,7 +111,7 @@ public class IntList {
             return n;
         }
     }
-    public static IntList Reverse(IntList A){
+    public static IntList reverse(IntList A){
         IntList frontOfReversed =null;
         IntList nextNodeToAdd = A;
         while(nextNodeToAdd != null){
