@@ -74,11 +74,11 @@ public class IntListTest {
     public void testReverse(){
         IntList A = IntList.of(1,2,3);
         IntList answer = IntList.of(3,2,1);
-        IntList B = IntList.Reverse(A);
+        IntList B = IntList.reverse(A);
         IntList C = IntList.of(1,2,3);
         assertEquals(answer,B);
         assertNotEquals(C,A);
-        assertEquals(null,IntList.Reverse(null));
+        assertEquals(null,IntList.reverse(null));
     }
 
 }
