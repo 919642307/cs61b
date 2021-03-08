@@ -30,7 +30,8 @@ public class TestPalindrome {
         assertTrue(palindrome.isPalindrome("flake",offByOne));
         assertFalse(palindrome.isPalindrome("aabaa",offByOne));
         assertFalse(palindrome.isPalindrome("noon",offByOne));
-        assertFalse(palindrome.isPalindrome("aa",offByOne));
+        assertTrue(palindrome.isPalindrome("cb",offByOne));
+        assertFalse(palindrome.isPalindrome("cB",offByOne));
 
     }
 }
