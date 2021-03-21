@@ -55,7 +55,7 @@ public class HexWorld {
         for(int xi = 0; xi < number; xi++) {
             int xCoord = P.x + xi;
             int yCoord = P.y;
-            world[xCoord][yCoord] =;
+            world[xCoord][yCoord] = Tileset.FLOWER;
         }
     }
 
