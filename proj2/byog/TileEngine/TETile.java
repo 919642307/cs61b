@@ -70,6 +70,10 @@ public class TETile {
         this(t.character, textColor, t.backgroundColor, t.description, t.filepath);
     }
 
+    public TETile() {
+
+    }
+
 
     /**
      * Draws the tile to the screen at location x, y. If a valid filepath is provided,
