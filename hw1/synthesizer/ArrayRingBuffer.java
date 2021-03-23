@@ -1,4 +1,5 @@
 package synthesizer;
+
 import java.util.Iterator;
 
 public class ArrayRingBuffer<T> extends AbstractBoundedQueue<T> {
@@ -7,7 +8,7 @@ public class ArrayRingBuffer<T> extends AbstractBoundedQueue<T> {
     /* Index for the next enqueue. */
     private int last;
     /* Array for storing the buffer data. */
-    private T[] rb;
+    private final T[] rb;
 
     /**
      * Create a new ArrayRingBuffer with the given capacity.
@@ -25,29 +26,34 @@ public class ArrayRingBuffer<T> extends AbstractBoundedQueue<T> {
     public Iterator<T> iterator() {
         return new ArrayRingBufferIterator();
     }
+
     private class ArrayRingBufferIterator implements Iterator<T> {
         private int pos;
         private int num;
+
         public ArrayRingBufferIterator() {
             pos = first;
             num = 0;
         }
+
         @Override
         public boolean hasNext() {
             return num < fillCount;
         }
+
         @Override
         public T next() {
             T item = rb[pos];
             if (pos == capacity - 1) {
                 pos = 0;
-            }else{
+            } else {
                 pos++;
             }
             num++;
             return item;
         }
     }
+
     public void enqueue(T x) {
         if (rb[last] != null) {
             throw new RuntimeException("Ring Buffer Overflow");
@@ -56,7 +62,7 @@ public class ArrayRingBuffer<T> extends AbstractBoundedQueue<T> {
         fillCount++;
         if (last == capacity - 1) {
             last = 0;
-        }else{
+        } else {
             last++;
         }
     }
@@ -74,7 +80,7 @@ public class ArrayRingBuffer<T> extends AbstractBoundedQueue<T> {
         rb[first] = null;
         if (first == capacity - 1) {
             first = 0;
-        }else{
+        } else {
             first++;
         }
         fillCount--;
