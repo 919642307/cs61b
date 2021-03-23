@@ -41,7 +41,7 @@ public class ArrayRingBuffer<T> extends AbstractBoundedQueue<T> {
             T item = rb[pos];
             if (pos == capacity - 1) {
                 pos = 0;
-            } else{
+            }else{
                 pos++;
             }
             num++;
@@ -49,7 +49,6 @@ public class ArrayRingBuffer<T> extends AbstractBoundedQueue<T> {
         }
     }
     public void enqueue(T x) {
-        // TODO: Enqueue the item. Don't forget to increase fillCount and update last.
         if (rb[last] != null) {
             throw new RuntimeException("Ring Buffer Overflow");
         }
@@ -57,7 +56,7 @@ public class ArrayRingBuffer<T> extends AbstractBoundedQueue<T> {
         fillCount++;
         if (last == capacity - 1) {
             last = 0;
-        } else{
+        }else{
             last++;
         }
     }
@@ -75,7 +74,7 @@ public class ArrayRingBuffer<T> extends AbstractBoundedQueue<T> {
         rb[first] = null;
         if (first == capacity - 1) {
             first = 0;
-        } else{
+        }else{
             first++;
         }
         fillCount--;
