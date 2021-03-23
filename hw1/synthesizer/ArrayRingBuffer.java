@@ -1,8 +1,6 @@
 package synthesizer;
 import java.util.Iterator;
 
-//TODO: Make sure to make this class and all of its methods public
-//TODO: Make sure to make this class extend AbstractBoundedQueue<t>
 public class ArrayRingBuffer<T> extends AbstractBoundedQueue<T> {
     /* Index for the next dequeue or peek. */
     private int first;            // index for the next dequeue or peek
@@ -15,11 +13,6 @@ public class ArrayRingBuffer<T> extends AbstractBoundedQueue<T> {
      * Create a new ArrayRingBuffer with the given capacity.
      */
     public ArrayRingBuffer(int capacity) {
-        // TODO: Create new array with capacity elements.
-        //       first, last, and fillCount should all be set to 0.
-        //       this.capacity should be set appropriately. Note that the local variable
-        //       here shadows the field we inherit from AbstractBoundedQueue, so
-        //       you'll need to use this.capacity to set the capacity.
         rb = (T[]) new Object[capacity];
         first = 0;
         last = 0;
@@ -64,7 +57,7 @@ public class ArrayRingBuffer<T> extends AbstractBoundedQueue<T> {
         fillCount++;
         if (last == capacity - 1) {
             last = 0;
-        } else {
+        } else{
             last++;
         }
     }
@@ -75,7 +68,6 @@ public class ArrayRingBuffer<T> extends AbstractBoundedQueue<T> {
      * covered Monday.
      */
     public T dequeue() {
-        // TODO: Dequeue the first item. Don't forget to decrease fillCount and update
         if (rb[first] == null) {
             throw new RuntimeException("Ring Buffer Underflow");
         }
@@ -83,7 +75,7 @@ public class ArrayRingBuffer<T> extends AbstractBoundedQueue<T> {
         rb[first] = null;
         if (first == capacity - 1) {
             first = 0;
-        } else {
+        } else{
             first++;
         }
         fillCount--;
@@ -94,12 +86,10 @@ public class ArrayRingBuffer<T> extends AbstractBoundedQueue<T> {
      * Return oldest item, but don't remove it.
      */
     public T peek() {
-        // TODO: Return the first item. None of your instance variables should change.
         if (rb[first] == null) {
             throw new RuntimeException("Ring Buffer Underflow");
         }
         return rb[first];
 
-        // TODO: When you get to part 5, implement the needed code to support iteration.
     }
 }
