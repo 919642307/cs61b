@@ -1,4 +1,8 @@
 package byog.lab5;
+import com.sun.source.tree.WhileLoopTree;
+import edu.princeton.cs.algs4.FordFulkerson;
+import edu.princeton.cs.algs4.Out;
+import edu.princeton.cs.algs4.WhiteFilter;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -73,8 +77,5 @@ public class HexWorld {
         newWorld.addHexagon(world, 13,P);
 
         ter.renderFrame(world);
-
     }
-
-
 }
