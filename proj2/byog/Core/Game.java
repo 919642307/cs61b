@@ -3,6 +3,8 @@ package byog.Core;
 import byog.TileEngine.TERenderer;
 import byog.TileEngine.TETile;
 
+import javax.imageio.plugins.tiff.ExifTIFFTagSet;
+import javax.security.auth.callback.TextInputCallback;
 import java.io.*;
 
 public class Game implements Serializable {
@@ -29,6 +31,7 @@ public class Game implements Serializable {
      * @param input the input string to feed to your program
      * @return the 2D TETile[][] representing the state of the world
      */
+
     public TETile[][] playWithInputString(String input) {
         // and return a 2D tile representation of the world that would have been
         // drawn if the same inputs had been given to playWithKeyboard().
@@ -40,8 +43,10 @@ public class Game implements Serializable {
         TETile[][] finalWorldFrame = new TETile[100][60];
         if (input.substring(0,1).equals("N")) {
             finalWorldFrame = toBeginNewGame(input);
+        } else if (input.substring(0,1).equals("L")){
+            finalWorldFrame = toLoadGame(input);
         } else {
-            toLoadGame(input);
+            System.exit(0);
         }
         return finalWorldFrame;
     }
