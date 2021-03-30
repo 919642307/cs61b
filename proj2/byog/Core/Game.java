@@ -74,8 +74,6 @@ public class Game implements Serializable {
             ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream("shapefile.txt"));
             out.writeObject(finalWorldFrame);
             out.close();
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -86,8 +84,6 @@ public class Game implements Serializable {
             ObjectInputStream in = new ObjectInputStream(new FileInputStream("shapefile.txt"));
             finalWorldFrame = (TETile[][]) in.readObject();
             in.close();
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
         } catch (ClassNotFoundException e) {
