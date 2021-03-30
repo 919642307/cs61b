@@ -62,7 +62,7 @@ public class Game implements Serializable {
         return finalWorldFrame;
     }
     private TETile[][] toLoadGame(String input) {
-        TETile[][] finalWorldFrame = new TETile[100][60];
+        TETile[][] finalWorldFrame;
         finalWorldFrame = getSavedGame();
         return finalWorldFrame;
     }
