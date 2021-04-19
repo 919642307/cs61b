@@ -97,7 +97,7 @@ public class Percolation {
         System.arraycopy(array,0,arr,0,i);
         return arr;
     }
-    private boolean isVaild(int row, int col) {
+    private void isVaild(int row, int col) {
         if (row < 0 || row >= N || col < 0 || col >= N) {
             throw new java.lang.IndexOutOfBoundsException();
         }
