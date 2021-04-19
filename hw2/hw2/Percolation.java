@@ -15,6 +15,9 @@ public class Percolation {
     private boolean[] isFull;
     private WeightedQuickUnionUF grid;
     public  Percolation(int N) {
+        if (N <= 0) {
+            throw new java.lang.IllegalArgumentException();
+        }
         this.N = N;
         totalSites = N * N + 2;
         top = totalSites - 2;
@@ -24,6 +27,7 @@ public class Percolation {
         isFull = new boolean[totalSites];
     }
     public void open(int row, int col) {
+        isVaild(row,col);
         int index = xyTo1D(row, col);
         isOpen[index] = true;
         int[] neighbour = new int[4];
@@ -45,6 +49,7 @@ public class Percolation {
         numberOfOpenSites++;
     }
     public boolean isOpen(int row, int col) {
+        isVaild(row,col);
         return isOpen[xyTo1D(row, col)];
     }
     private boolean isOpen(int x) {
@@ -52,6 +57,7 @@ public class Percolation {
     }
 
     public boolean isFull(int row, int col) {
+        isVaild(row, col);
         return grid.connected(xyTo1D(row,col), top);
     }
     public int numberOfOpenSites() {
@@ -91,10 +97,13 @@ public class Percolation {
         System.arraycopy(array,0,arr,0,i);
         return arr;
     }
+    private boolean isVaild(int row, int col) {
+        if (row < 0 || row >= N || col < 0 || col >= N) {
+            throw new java.lang.IndexOutOfBoundsException();
+        }
+    }
 
     private int xyTo1D(int x, int y) {
        return (x*N+y);
     }
-
-
 }
