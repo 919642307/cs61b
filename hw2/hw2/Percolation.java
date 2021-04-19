@@ -14,6 +14,7 @@ public class Percolation {
     private boolean[] isOpen;
     private boolean[] isFull;
     private WeightedQuickUnionUF grid;
+    private WeightedQuickUnionUF grid2;
     public  Percolation(int N) {
         if (N <= 0) {
             throw new java.lang.IllegalArgumentException();
@@ -23,11 +24,15 @@ public class Percolation {
         top = totalSites - 2;
         Buttom = totalSites - 1;
         grid = new WeightedQuickUnionUF(totalSites);
+        grid2 = new WeightedQuickUnionUF(totalSites-1);
         isOpen = new boolean[totalSites];
         isFull = new boolean[totalSites];
     }
     public void open(int row, int col) {
         isVaild(row,col);
+        if (isOpen(row,col)) {
+            return;
+        }
         int index = xyTo1D(row, col);
         isOpen[index] = true;
         int[] neighbour = new int[4];
@@ -37,11 +42,13 @@ public class Percolation {
         while (i < length) {
             if (isOpen(neighbour[i])) {
                 grid.union(index, neighbour[i]);
+                grid2.union(index,neighbour[i]);
                 i++;
             }
         }
         if (row == 0) {
             grid.union(index,top);
+            grid2.union(index,top);
         }
         if (row == N-1) {
             grid.union(index,Buttom);
@@ -58,7 +65,7 @@ public class Percolation {
 
     public boolean isFull(int row, int col) {
         isVaild(row, col);
-        return grid.connected(xyTo1D(row,col), top);
+        return grid2.connected(xyTo1D(row,col), top);
     }
     public int numberOfOpenSites() {
         return numberOfOpenSites;
