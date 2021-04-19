@@ -25,7 +25,6 @@ public class Percolation {
         grid = new WeightedQuickUnionUF(totalSites);
         grid2 = new WeightedQuickUnionUF(totalSites-1);
         isOpen = new boolean[totalSites];
-        isFull = new boolean[totalSites];
     }
     public void open(int row, int col) {
         isVaild(row,col);
