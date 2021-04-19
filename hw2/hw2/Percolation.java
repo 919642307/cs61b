@@ -12,7 +12,6 @@ public class Percolation {
     private int top;
     private int Buttom;
     private boolean[] isOpen;
-    private boolean[] isFull;
     private WeightedQuickUnionUF grid;
     private WeightedQuickUnionUF grid2;
     public  Percolation(int N) {
