@@ -1,7 +1,9 @@
 package lab9;
 
 import com.sun.source.tree.IfTree;
+import edu.princeton.cs.algs4.SET;
 
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
 
@@ -106,9 +108,21 @@ public class BSTMap<K extends Comparable<K>, V> implements Map61B<K, V> {
     /* Returns a Set view of the keys contained in this map. */
     @Override
     public Set<K> keySet() {
-        throw new UnsupportedOperationException();
+        Set<K> set = new HashSet<>();
+        return keySet(set, root);
     }
 
+    private Set<K> keySet(Set<K> set, Node p) {
+        if (p == null) {
+            return null;
+        }
+        else {
+            set.add(p.key);
+            keySet(set, p.left);
+            keySet(set, p.right);
+            return set;
+        }
+    }
     /** Removes KEY from the tree if present
      *  returns VALUE removed,
      *  null on failed removal.
