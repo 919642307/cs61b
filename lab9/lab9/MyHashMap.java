@@ -1,5 +1,6 @@
 package lab9;
 
+import java.awt.*;
 import java.util.Iterator;
 import java.util.Set;
 
@@ -53,21 +54,57 @@ public class MyHashMap<K, V> implements Map61B<K, V> {
      */
     @Override
     public V get(K key) {
-        throw new UnsupportedOperationException();
+        int hash = hash(key);
+        return buckets[hash].get(key);
     }
 
     /* Associates the specified value with the specified key in this map. */
     @Override
     public void put(K key, V value) {
-        throw new UnsupportedOperationException();
+        if (loadFactor() > MAX_LF) {
+            resize();
+        }
+
+        int hash = hash(key);
+        if (buckets[hash].containsKey(key)){
+            buckets[hash].put(key,value);
+        }
+        else {
+            buckets[hash].put(key, value);
+            size++;
+        }
+    }
+
+    private void resize() {
+        int length = buckets.length * 2;
+        ArrayMap<K,V>[] newBuckets = new ArrayMap[length];
+        ArrayMap<K,V>[] oldBuckets = buckets;
+        buckets = newBuckets;
+        size = 0;
+        for (int j = 0;j<buckets.length;j++) {
+            this.buckets[j] = new ArrayMap<>();
+        }
+        for (int i = 0;i<oldBuckets.length;i++) {
+            for (K key:oldBuckets[i].keySet()) {
+                put(key,oldBuckets[i].get(key));
+            }
+        }
+
+
     }
 
     /* Returns the number of key-value mappings in this map. */
     @Override
     public int size() {
-        throw new UnsupportedOperationException();
+        return size;
     }
 
+    public static void main(String[] args) {
+        MyHashMap<Integer,Integer> map = new MyHashMap<>();
+        map.clear();
+        map.put(12,15);
+        System.out.println(map.get(12));
+    }
     //////////////// EVERYTHING BELOW THIS LINE IS OPTIONAL ////////////////
 
     /* Returns a Set view of the keys contained in this map. */
