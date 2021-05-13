@@ -1,4 +1,5 @@
 package hw3.hash;
+
 import java.awt.Color;
 import java.util.Arrays;
 
@@ -26,7 +27,7 @@ public class SimpleOomage implements Oomage {
             return false;
         }
         SimpleOomage that = (SimpleOomage) o;
-        return (this.red == that.red)&&(this.blue == that.blue)&&(this.green == that.green);
+        return (this.red == that.red) && (this.blue == that.blue) && (this.green == that.green);
     }
 
 
@@ -34,7 +35,7 @@ public class SimpleOomage implements Oomage {
         if (!USE_PERFECT_HASH) {
             return red + green + blue;
         } else {
-            return (red/5)*10000+(green/5)*100+(blue/5);
+            return (red / 5) * 10000 + (green / 5) * 100 + (blue / 5);
         }
     }
 

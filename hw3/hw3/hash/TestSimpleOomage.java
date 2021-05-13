@@ -27,10 +27,10 @@ public class TestSimpleOomage {
     public void testHashCodePerfect() {
 
         ArrayList<SimpleOomage> s = new ArrayList<>();
-        for (int j = 0;j < 256;j = j+5) {
-            for (int k = 0;k<256;k = k+5) {
-                for (int l = 0;l< 256; l = l+5) {
-                    s.add(new SimpleOomage(j,k,l));
+        for (int j = 0; j < 256; j = j + 5) {
+            for (int k = 0; k < 256; k = k + 5) {
+                for (int l = 0; l < 256; l = l + 5) {
+                    s.add(new SimpleOomage(j, k, l));
                 }
             }
         }
@@ -74,7 +74,9 @@ public class TestSimpleOomage {
         assertTrue(OomageTestUtility.haveNiceHashCodeSpread(oomages, 10));
     }
 
-    /** Calls tests for SimpleOomage. */
+    /**
+     * Calls tests for SimpleOomage.
+     */
     public static void main(String[] args) {
         jh61b.junit.textui.runClasses(TestSimpleOomage.class);
     }

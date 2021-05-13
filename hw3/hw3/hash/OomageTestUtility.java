@@ -14,19 +14,19 @@ public class OomageTestUtility {
          * Oomages and no bucket has more than N / 2.5 Oomages.
          */
         ArrayList<Oomage>[] bucket = new ArrayList[M];
-        for (int j = 0;j < M;j++) {
+        for (int j = 0; j < M; j++) {
             bucket[j] = new ArrayList<>();
         }
         int N = 0;
         for (Oomage o : oomages) {
-            int bucketNum = (o.hashCode()&0x7FFFFFFF)%M;
+            int bucketNum = (o.hashCode() & 0x7FFFFFFF) % M;
             bucket[bucketNum].add(o);
             N++;
         }
 
         boolean judgement = true;
-        for (int i = 0;i < M;i++) {
-            if (bucket[i].size()<(N/50)||bucket[i].size()>(N/2.5)) {
+        for (int i = 0; i < M; i++) {
+            if (bucket[i].size() < (N / 50) || bucket[i].size() > (N / 2.5)) {
                 judgement = false;
             }
         }
